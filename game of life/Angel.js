@@ -1,7 +1,6 @@
-class Angel {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
+class Angel extends LivingCreature {
+    constructor(x, y, index){
+        super(x, y, index);
         this.energy = 60;
         this.directions = [];
     }
@@ -19,20 +18,10 @@ class Angel {
         ];
     }
 
-    chooseCell(character, food1, food2) {
+    chooseCell(character) {
         this.getNewCoordinates();
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character || matrix[y][x] == food1 || matrix[y][x] == food2) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+        return super.chooseCell(character);
+    } 
 
     mul() {
         var found = this.chooseCell(0);

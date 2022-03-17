@@ -5,8 +5,9 @@ var grassEaterArr = [];
 var monsterArr = [];
 var angelArr = [];
 var virusArr = [];
+var creatureArr = [];
 
-function generator(grass, grassEater, matrixSize, monster, angel, virus){
+function generator(grass, grassEater, matrixSize, monster, angel, virus, creature){
     for(let i = 0; i < matrixSize; i++){
         matrix.push([]);
         for (let j = 0; j < matrixSize; j++) {
@@ -42,6 +43,12 @@ function generator(grass, grassEater, matrixSize, monster, angel, virus){
         const y = Math.round(Math.random() * (matrixSize - 1));
         matrix[y][x] = 5;
         virusArr.push(new Virus(x, y));
+    }
+    for (let i = 0; i < creature; i++) {
+        const x = Math.round(Math.random() * (matrixSize - 1));
+        const y = Math.round(Math.random() * (matrixSize - 1));
+        matrix[y][x] = 5;
+        creature.push(new LivingCreature(x, y));
     }
 }
 
