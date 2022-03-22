@@ -1,4 +1,6 @@
-class Angel extends LivingCreature {
+let LivingCreature = require('./LivingCreature')
+
+module.exports = class Angel extends LivingCreature {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 60;
@@ -21,11 +23,11 @@ class Angel extends LivingCreature {
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
-    } 
+    }
 
     mul() {
         var found = this.chooseCell(0);
-        var newCell = random(found);
+        var newCell = found[Math.floor(Math.random()*found.length)];
 
         if (newCell && this.energy >= 10) {
             var newX = newCell[0];
@@ -38,7 +40,7 @@ class Angel extends LivingCreature {
 
     move() {
         var found = this.chooseCell(0);
-        var newCell = random(found);
+        var newCell = found[Math.floor(Math.random()*found.length)];
 
         if (newCell) {
             var newX = newCell[0];
@@ -59,7 +61,7 @@ class Angel extends LivingCreature {
 
     eat() {
         var found = this.chooseCell(3, 5);
-        var newCell = random(found);
+        var newCell = found[Math.floor(Math.random()*found.length)];
 
         if (newCell) {
             var newX = newCell[0];
@@ -92,7 +94,7 @@ class Angel extends LivingCreature {
             this.move();
         }
     }
-    
+
     die() {
         for (var i in angelArr) {
             if (this.x == angelArr[i].x && this.y == angelArr[i].y) {
@@ -103,5 +105,3 @@ class Angel extends LivingCreature {
         matrix[this.y][this.x] = 0;
     }
 }
-
-

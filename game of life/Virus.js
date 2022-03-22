@@ -1,4 +1,6 @@
-class Virus extends LivingCreature {
+let LivingCreature = require('./LivingCreature')
+
+module.exports = class Virus extends LivingCreature {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 40;
@@ -25,8 +27,7 @@ class Virus extends LivingCreature {
 
     mul() {
         var found = this.chooseCell(0);
-        var newCell = random(found);
-
+        var newCell = found[Math.floor(Math.random()*found.length)]
         if (newCell && this.energy >= 40) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -38,7 +39,7 @@ class Virus extends LivingCreature {
 
     move() {
         var found = this.chooseCell(0);
-        var newCell = random(found);
+        var newCell = found[Math.floor(Math.random()*found.length)]
 
         if (newCell) {
             var newX = newCell[0];
@@ -59,7 +60,7 @@ class Virus extends LivingCreature {
 
     eat() {
         var found = this.chooseCell(2, 3);
-        var newCell = random(found);
+        var newCell = found[Math.floor(Math.random()*found.length)]
 
         if (newCell) {
             var newX = newCell[0];
