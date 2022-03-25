@@ -1,4 +1,5 @@
 let LivingCreature = require('./LivingCreature')
+var random = require("./random.js");
 
 module.exports = class Virus extends LivingCreature {
     constructor(x, y, index){
@@ -27,7 +28,7 @@ module.exports = class Virus extends LivingCreature {
 
     mul() {
         var found = this.chooseCell(0);
-        var newCell = found[Math.floor(Math.random()*found.length)]
+        var newCell = random(found);
         if (newCell && this.energy >= 40) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -39,7 +40,7 @@ module.exports = class Virus extends LivingCreature {
 
     move() {
         var found = this.chooseCell(0);
-        var newCell = found[Math.floor(Math.random()*found.length)]
+        var newCell = random(found);
 
         if (newCell) {
             var newX = newCell[0];
@@ -60,7 +61,7 @@ module.exports = class Virus extends LivingCreature {
 
     eat() {
         var found = this.chooseCell(2, 3);
-        var newCell = found[Math.floor(Math.random()*found.length)]
+        var newCell = random(found);
 
         if (newCell) {
             var newX = newCell[0];

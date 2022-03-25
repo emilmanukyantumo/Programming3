@@ -1,4 +1,4 @@
-const matrix = [];
+var matrix = [];
 const side = 20;
 var grassArr = [];
 var grassEaterArr = [];

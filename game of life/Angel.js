@@ -1,4 +1,5 @@
 let LivingCreature = require('./LivingCreature')
+var random = require("./random.js");
 
 module.exports = class Angel extends LivingCreature {
     constructor(x, y, index){
@@ -27,7 +28,7 @@ module.exports = class Angel extends LivingCreature {
 
     mul() {
         var found = this.chooseCell(0);
-        var newCell = found[Math.floor(Math.random()*found.length)];
+        var newCell = random(found);
 
         if (newCell && this.energy >= 10) {
             var newX = newCell[0];
@@ -40,7 +41,7 @@ module.exports = class Angel extends LivingCreature {
 
     move() {
         var found = this.chooseCell(0);
-        var newCell = found[Math.floor(Math.random()*found.length)];
+        var newCell = random(found);
 
         if (newCell) {
             var newX = newCell[0];
@@ -61,7 +62,7 @@ module.exports = class Angel extends LivingCreature {
 
     eat() {
         var found = this.chooseCell(3, 5);
-        var newCell = found[Math.floor(Math.random()*found.length)];
+        var newCell = random(found);
 
         if (newCell) {
             var newX = newCell[0];

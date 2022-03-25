@@ -3,6 +3,7 @@ var GrassEater = require("./GrassEater.js");
 var Angel = require("./Angel");
 var Virus = require("./Virus");
 var Monster = require("./Monster");
+let random = require('./random');
 
 var grassArr = [];
 var grassEaterArr = [];
