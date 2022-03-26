@@ -4,7 +4,7 @@ var random = require("./random.js");
 module.exports = class Monster extends LivingCreature {
     constructor(x, y, index){
         super(x, y, index);
-        this.energy = 30;
+        this.energy = 10;
         this.directions = [];
     }
 
@@ -61,7 +61,7 @@ module.exports = class Monster extends LivingCreature {
     }
 
     eat() {
-        var found = this.chooseCell(1, 2);
+        var found = this.chooseCell(2);
         var newCell = random(found);
 
         if (newCell) {
@@ -81,13 +81,13 @@ module.exports = class Monster extends LivingCreature {
                     break;
             }
         }
-        for (var i in angelArr) {
-            if (this.x == angelArr[i].x && this.y == angelArr[i].y) {
-                angelArr.splice(i, 1);
-                break;
-            }
-        }
-            if (this.energy >= 20) {
+        // for (var i in angelArr) {
+        //     if (this.x == angelArr[i].x && this.y == angelArr[i].y) {
+        //         angelArr.splice(i, 1);
+        //         break;
+        //     }
+        // }
+            if (this.energy >= 40) {
                 this.mul();
             }
         }
@@ -97,9 +97,9 @@ module.exports = class Monster extends LivingCreature {
     }
 
     die() {
-        for (var i in virusArr) {
-            if (this.x == virusArr[i].x && this.y == virusArr[i].y) {
-                virusArr.splice(i, 1);
+        for (var i in monsterArr) {
+            if (this.x == monsterArr[i].x && this.y == monsterArr[i].y) {
+              monsterArr.splice(i, 1);
                 break;
             }
         }

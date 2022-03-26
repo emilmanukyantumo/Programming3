@@ -5,15 +5,15 @@ var Virus = require("./Virus");
 var Monster = require("./Monster");
 let random = require('./random');
 
-var grassArr = [];
-var grassEaterArr = [];
-var monsterArr = [];
-var angelArr = [];
-var virusArr = [];
+matrix = []
+grassArr = [];
+grassEaterArr = [];
+monsterArr = [];
+angelArr = [];
+virusArr = [];
 //var creatureArr = [];
-const matrix = [];
 
-function generator(grass, grassEater, matrixSize, monster, angel, virus){
+function generator(matrixSize, grass, grassEater, monster, angel, virus){
   for(let i = 0; i < matrixSize; i++){
     matrix.push([]);
     for (let j = 0; j < matrixSize; j++) {
@@ -58,7 +58,7 @@ function generator(grass, grassEater, matrixSize, monster, angel, virus){
   // }
 }
 
-generator(5, 40, 20, 10, 10, 5);
+generator(30, 15, 40, 10, 20, 5);
 
 var express = require('express');
 var app = express();
@@ -90,7 +90,7 @@ function creatingObjects() {
         var angel = new Angel(x, y);
         angelArr.push(angel);
       }
-      else if (matrix[y][x] == 4) {
+      else if (matrix[y][x] == 5) {
         var virus = new Virus(x, y);
         virusArr.push(virus);
       }
@@ -130,7 +130,11 @@ function game() {
   //! Object to send
   let sendData = {
       matrix: matrix,
-      grassCounter: grassArr.length
+      grassCounter: grassArr.length,
+      grassEaterCounter: grassEaterArr.length,
+      monsterCounter: monsterArr.length,
+      angelCounter: angelArr.length,
+      virusCounter: virusArr.length
   }
 
   //! Send data over the socket to clients who listens "data"
@@ -139,4 +143,27 @@ function game() {
 
 
 
-setInterval(game, 1000)
+setInterval(game, 100)
+
+// function kill() {
+//   grassArr = [];
+//   grassEaterArr = []
+//   meatEaterArr = []
+//   allEaterArr = []
+//   hunterArr = []
+//   for (var y = 0; y < matrix.length; y++) {
+//       for (var x = 0; x < matrix[y].length; x++) {
+//           matrix[y][x] = 0;
+//       }
+//   }
+//   io.sockets.emit("send matrix", matrix);
+// }
+// ////   Create static Json
+// var statistics = {};
+
+// setInterval(function () {
+//   statistics.grass = grassArr.length;
+//   statistics.grassEater = grassEaterArr.length;
+//   fs.writeFile("statistics.json", JSON.stringify(statistics), function () {
+//   })
+// }, 1000)
