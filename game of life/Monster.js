@@ -4,7 +4,7 @@ var random = require("./random.js");
 module.exports = class Monster extends LivingCreature {
     constructor(x, y, index){
         super(x, y, index);
-        this.energy = 10;
+        this.energy = 30;
         this.directions = [];
     }
 

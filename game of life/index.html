@@ -21,8 +21,52 @@
 
         body {
             font-family: 'Noto Sans', sans-serif !important;
+            background-color: red;
+            background-image: linear-gradient(gray, white, gray);
         }
-    </style>
+      .button {
+        border-radius: 4px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        width: 200px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+
+      .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
+
+      .button:hover span {
+        padding-right: 25px;
+      }
+
+      .button:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
+      .button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
     </style>
 </head>
 
@@ -60,23 +104,23 @@
               <th scope="row">3</th>
               <td scope="row" style="background-color:black;"></td>
               <td>Սևը հրեշն է, որը բազմանում է N հատ խոտակեր ուտելուց հետո և մահանում N հատ չուտելուց հետո, կամ երբ նրան ուտում են վիրուսը և հրեշտակը</td>
-              <td id="grassEaterCount"></td>
+              <td id="monsterCount"></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td scope="row" style="background-color:blue;"></td>
             <td>Կապույտը հրեշտակն է, որը բազմանում է N հատ հրեշ ուտելուց հետո և մահանում N հատ չուտելուց հետո, կամ երբ նրան ուտում են վիրուսը և հրեշը</td>
-            <td id="grassEaterCount"></td>
+            <td id="angelCount"></td>
         </tr>
         <tr>
           <th scope="row">5</th>
           <td scope="row" style="background-color:red;"></td>
           <td>Կարմիրը վիրուսն է, որը բազմանում է N հատ հրեշ, հրեշտակ կամ խոտակեր ուտելուց հետո և մահանում N հատ չուտելուց հետո</td>
-          <td id="grassEaterCount"></td>
+          <td id="virusCount"></td>
       </tr>
         </tbody>
     </table>
-    <button onclick="kill()">Kill them all</button>
+    <button class="button" onclick="kill()"><span>Kill all</span></button>
     <script src="	https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>

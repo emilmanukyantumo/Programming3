@@ -13,6 +13,8 @@ angelArr = [];
 virusArr = [];
 //var creatureArr = [];
 
+weath = "winter"
+
 function generator(matrixSize, grass, grassEater, monster, angel, virus){
   for(let i = 0; i < matrixSize; i++){
     matrix.push([]);
@@ -58,7 +60,24 @@ function generator(matrixSize, grass, grassEater, monster, angel, virus){
   // }
 }
 
-generator(30, 15, 40, 10, 20, 5);
+generator(30, 15, 70, 20, 20, 10);
+
+function weather() {
+  if (weath == "winter") {
+      weath = "spring"
+  }
+  else if (weath == "spring") {
+      weath = "summer"
+  }
+  else if (weath == "summer") {
+      weath = "autumn"
+  }
+  else if (weath == "autumn") {
+      weath = "winter"
+  }
+  io.sockets.emit('weather', weath)
+}
+setInterval(weather, 5000);
 
 var express = require('express');
 var app = express();
@@ -101,6 +120,13 @@ function creatingObjects() {
 creatingObjects();
 
 function game() {
+  if (grassArr[0] !== undefined) {
+    if(weath != 'autumn') {
+        for (var i in grassArr) {
+            grassArr[i].mul();
+        }
+    }
+  }
   if (grassArr[0] !== undefined) {
       for (var i in grassArr) {
           grassArr[i].mul();

@@ -4,31 +4,71 @@ let socket = io()
 function setup() {
   // frameRate(20);
 
-  լետ 
+  var weath = 'winter'
+
+  let grassCountElement = document.getElementById('grassCount');
+  let grassEaterCountElement = document.getElementById('grassEaterCount');
+  let monsterCountElement = document.getElementById('monsterCount');
+  let angelCountElement = document.getElementById('angelCount');
+  let virusCountElement = document.getElementById('virusCount');
+
   socket.on('data',drawGame)
+  socket.on("weather", function (data)
+    {
+      weath = data;
+    })
   function drawGame(data) {
     console.log(data);
-    matrix = data.matrix
+    matrix = data.matrix;
+    grassCountElement.innerText = data.grassCounter;
+    grassEaterCountElement.innerText = data.grassEaterCounter;
+    monsterCountElement.innerText = data.monsterCounter;
+    angelCountElement.innerText = data.angelCounter;
+    virusCountElement.innerText = data.virusCounter;
+
     createCanvas(matrix[0].length * side, matrix.length * side);
-    for (var y = 0; y < matrix.length; y++) {
-      for (var x = 0; x < matrix[y].length; x++) {
-        if (matrix[y][x] == 0) {
-          fill("gray");
-        } else if (matrix[y][x] == 1) {
-          fill("green");
-          text("🥬", x * side, y * side, side, side);
-        } else if (matrix[y][x] == 2) {
-          fill("yellow");
-          text("🐐", x * side, y * side, side, side);
-        } else if (matrix[y][x] == 3) {
-          fill("black");
-        } else if (matrix[y][x] == 4) {
-          fill("blue");
-        } else if (matrix[y][x] == 5) {
-          fill("red");
-        }
-        rect(x * side, y * side, side, side);
+
+    for (var i = 0; i < matrix.length; i++) {
+      for (var j = 0; j < matrix[i].length; j++) {
+          if (matrix[i][j] == 1) {
+                  if(weath == "spring")
+                  {
+                      fill("green")
+                  }
+                  else if(weath == "summer")
+                  {
+                      fill("lightgreen");
+                  }
+                  else if(weath == "winter")
+                  {
+                      fill("#dee0dc")
+                  }
+                  else if(weath == "autumn")
+                  {
+                      fill("orange")
+                  }
+                  rect(j * side, i * side, side, side);
+          } else if (matrix[i][j] == 2) {
+              fill("yellow");
+              rect(j * side, i * side, side, side);
+          } else if (matrix[i][j] == 0) {
+              fill('#acacac');
+              rect(j * side, i * side, side, side);
+          } else if (matrix[i][j] == 3) {
+              fill('black');
+              rect(j * side, i * side, side, side);
+          } else if (matrix[i][j] == 4) {
+              fill('blue');
+              rect(j * side, i * side, side, side);
+          } else if (matrix[i][j] == 5) {
+              fill('red');
+              rect(j * side, i * side, side, side);
+          }
       }
     }
   }
+}
+
+function kill() {
+  socket.emit("kill")
 }
