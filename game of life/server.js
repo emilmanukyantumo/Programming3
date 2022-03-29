@@ -4,6 +4,7 @@ var Angel = require("./Angel");
 var Virus = require("./Virus");
 var Monster = require("./Monster");
 let random = require('./random');
+var fs = require("fs")
 
 matrix = []
 grassArr = [];
@@ -127,15 +128,17 @@ function game() {
         }
     }
   }
-  if (grassArr[0] !== undefined) {
-      for (var i in grassArr) {
-          grassArr[i].mul();
-      }
-  }
+  // if (grassArr[0] !== undefined) {
+  //     for (var i in grassArr) {
+  //         grassArr[i].mul();
+  //     }
+  // }
   if (grassEaterArr[0] !== undefined) {
+    if (weath != "winter") {
       for (var i in grassEaterArr) {
           grassEaterArr[i].eat();
       }
+    }
   }
   if (monsterArr[0] !== undefined) {
     for (var i in monsterArr) {
@@ -171,25 +174,31 @@ function game() {
 
 setInterval(game, 100)
 
-// function kill() {
-//   grassArr = [];
-//   grassEaterArr = []
-//   meatEaterArr = []
-//   allEaterArr = []
-//   hunterArr = []
-//   for (var y = 0; y < matrix.length; y++) {
-//       for (var x = 0; x < matrix[y].length; x++) {
-//           matrix[y][x] = 0;
-//       }
-//   }
-//   io.sockets.emit("send matrix", matrix);
-// }
-// ////   Create static Json
-// var statistics = {};
+function kill() {
+  grassArr = [];
+  grassEaterArr = []
+  monsterArr = []
+  angelArr = []
+  virusArr = []
+  for (var y = 0; y < matrix.length; y++) {
+      for (var x = 0; x < matrix[y].length; x++) {
+          matrix[y][x] = 0;
+      }
+  }
+  io.sockets.emit("send matrix", matrix);
+}
+////   Create static Json
+var statistics = {};
 
-// setInterval(function () {
-//   statistics.grass = grassArr.length;
-//   statistics.grassEater = grassEaterArr.length;
-//   fs.writeFile("statistics.json", JSON.stringify(statistics), function () {
-//   })
-// }, 1000)
+setInterval(function () {
+  statistics.grass = grassArr.length;
+  statistics.grassEater = grassEaterArr.length;
+  statistics.monster = monsterArr.length;
+  statistics.angel = angelArr.length;
+  statistics.virus = virusArr.length;
+  fs.writeFile("statistics.json", JSON.stringify(statistics), function () {
+    // for (var i in matrix) {
+    //   matrix.splice(i, 1);
+    // }
+  })
+}, 1000)

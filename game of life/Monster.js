@@ -63,6 +63,9 @@ module.exports = class Monster extends LivingCreature {
     eat() {
         var found = this.chooseCell(2);
         var newCell = random(found);
+        if (weath == "spring") {
+          this.energy *= 2;
+        }
 
         if (newCell) {
             var newX = newCell[0];
