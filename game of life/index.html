@@ -6,7 +6,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         canvas {
-            display: block;
+            /* display: block; */
             margin: 0 auto;
         }
 
@@ -26,13 +26,14 @@
         }
       .button {
         border-radius: 4px;
-        background-color: #f4511e;
+        /* background-color: #f4511e; */
+        background-color: green;
         border: none;
         color: #FFFFFF;
         text-align: center;
         font-size: 28px;
-        padding: 20px;
-        width: 200px;
+        margin: 20px;
+        width: 320px;
         transition: all 0.5s;
         cursor: pointer;
         margin: 5px;
@@ -63,7 +64,8 @@
         right: 0;
       }
       .button:active {
-        background-color: #3e8e41;
+        /* background-color: #3e8e41; */
+        background-color: red;
         box-shadow: 0 5px #666;
         transform: translateY(4px);
       }
@@ -90,20 +92,19 @@
             <tr>
                 <th scope="row">1</th>
                 <td scope="row" style="background-color:green;"></td>
-                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ նրան կոխկրտում է գիշատիչը</td>
+                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ նրան կոխկրտում է գիշատիչը: Խոտը փոխում է իր գույները կախված եղանակից և չի բազմանում աշնանը (Հուշում` խոտը դառնում է նարնջագույն)</td>
                 <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:orange;"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
-                    երբ նրան ուտում են հրեշը ու վիրուսը:</td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ երբ նրան ուտում են հրեշը ու վիրուսը: <br>Խոտակերը չի բազմանում ձմռանը(Հուշում` խոտը դառնում է սպիտակ), իսկ ստեղների միջոցով նրան կարելի է սառեցնել(Freeze Grass Eater) և կենդանացնել(Animate Grass Eater):</td>
                 <td id="grassEaterCount"></td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td scope="row" style="background-color:black;"></td>
-              <td>Սևը հրեշն է, որը բազմանում է N հատ խոտակեր ուտելուց հետո և մահանում N հատ չուտելուց հետո, կամ երբ նրան ուտում են վիրուսը և հրեշտակը</td>
+              <td>Սևը հրեշն է, որը բազմանում է N հատ խոտակեր ուտելուց հետո և մահանում N հատ չուտելուց հետո, կամ երբ նրան ուտում են վիրուսը և հրեշտակը: Հրեշը բազմանում է միայն ձմռանը</td>
               <td id="monsterCount"></td>
           </tr>
           <tr>
@@ -121,6 +122,9 @@
         </tbody>
     </table>
     <button class="button" onclick="kill()"><span>Kill all</span></button>
+    <button class="button" onclick="freezeGrassEater()"><span>Kill Grass Eater</span></button>
+    <button class="button" onclick="animGrassEater()"><span>Animate Grass Eater</span></button>
+    <button class="button" onclick="boom()"><span>BOOM</span></button>
     <script src="	https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
